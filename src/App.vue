@@ -29,7 +29,8 @@ const selectMemo = (index: number) => {
     </el-aside>
     <el-main>
       <el-input v-model="selectedMemo.title" placeholder="タイトル" />
-      <el-input type="textarea" v-model="selectedMemo.content" placeholder="メモ内容" />
+      <ex-rich-editor v-model="selectedMemo.content" />
+
     </el-main>
   </el-container>
 </template>
