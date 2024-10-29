@@ -5,6 +5,7 @@ const memos = ref([
   { title: 'メモ1', content: 'メモ1の内容' },
   { title: 'メモ2', content: 'メモ2の内容' },
   { title: 'メモ3', content: 'メモ3の内容' },
+  { title: 'メモ4', content: 'メモ4の内容' },
 ]);
 const selectedMemoIndex = ref(0);
 
