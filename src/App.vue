@@ -20,8 +20,8 @@ const selectMemo = (index: number) => {
 </script>
 
 <template>
-  <el-container style="height: 100vh;">
-    <el-aside width="300px">
+  <el-container>
+    <el-aside width="200px">
       <el-menu>
         <el-menu-item v-for="(memo, index) in memos" :key="index" @click="selectMemo(index)">
           {{ memo.title }}
@@ -31,7 +31,7 @@ const selectMemo = (index: number) => {
     <el-main>
       <el-input v-model="selectedMemo.title" placeholder="タイトル" />
       <ex-rich-editor v-model="selectedMemo.content" />
-
+      <el-button type="primary">保存</el-button>
     </el-main>
   </el-container>
 </template>

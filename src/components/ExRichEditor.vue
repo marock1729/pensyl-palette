@@ -78,12 +78,22 @@ watch(content, (newValue) => {
 <style>
 .editor-container {
     margin: 0 auto;
-    padding: 10px;
+    padding: 16px 0;
     background-color: #fff;
 }
 
 .tiptap {
-    outline: none;
+    /* outline: none; */
+    outline: 1px solid #ddd;
+    padding: 6px 11px;
+    border-radius: 4px;
+    color: #606266;
+    overflow-y: auto;
+    min-height: 300px;
+}
+
+.tiptap:focus {
+    outline: 1px solid #409eff;
 }
 
 .tiptap p {
