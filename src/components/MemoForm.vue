@@ -12,6 +12,7 @@ const formData = ref<Memo>({
   title: "",
   content: "",
   search: "",
+  pureText: "",
 });
 
 const isEditing = ref(false);
@@ -22,6 +23,7 @@ const resetForm = async () => {
     title: "",
     content: "",
     search: "",
+    pureText: "",
   };
   isEditing.value = false;
 };
@@ -60,7 +62,7 @@ const submitForm = async () => {
       id: null,
       title: formData.value.title,
       content: formData.value.content,
-      search: formData.value.title + " " + formData.value.content,
+      search: formData.value.title + " " + formData.value.pureText,
     });
 
     if (newMemo) {
@@ -78,12 +80,14 @@ const submitForm = async () => {
         <el-input v-model="formData.title" placeholder="タイトルを入力" />
       </el-form-item>
       <el-form-item label="内容">
-        <el-input
-          v-model="formData.content"
-          type="textarea"
-          :rows="4"
+        <ex-rich-editor
+          v-model:content="formData.content"
+          v-model:pure-text="formData.pureText"
           placeholder="メモの内容を入力"
         />
+        {{ formData.content }}
+        <br />
+        {{ formData.search }}
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">
