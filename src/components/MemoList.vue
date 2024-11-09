@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useMemoStore } from "../stores/memo";
-import type { Memo } from "@/types";
+import { MenuItemRegistered } from "element-plus/lib/components/menu/src/types";
 
 const store = useMemoStore();
 const { memos, isLoading } = storeToRefs(store);
 
-const handleCreateMemo = async () => {
+const handleCreateMemo = async (_item: MenuItemRegistered) => {
   console.log("新規作成");
   store.setSelectedMemo(null);
 };
 
-const handleSelectMemo = async (item: Memo) => {
+const handleSelectMemo = async (item: MenuItemRegistered) => {
   console.log("選択", item);
-  store.setSelectedMemo(item);
+  store.setSelectedMemo(
+    memos.value.find((memo) => memo.id === Number(item.index)) ?? null
+  );
 };
 </script>
 <template>
@@ -24,11 +26,14 @@ const handleSelectMemo = async (item: Memo) => {
     </el-card>
     <template v-else>
       <el-menu>
-        <el-menu-item @click="handleCreateMemo">新規作成</el-menu-item>
+        <el-menu-item key="create" index="create" @click="handleCreateMemo"
+          >新規作成</el-menu-item
+        >
         <el-menu-item
           v-for="item in memos"
           :key="item.id!"
-          @click="handleSelectMemo(item)"
+          :index="item.id!.toString()"
+          @click="handleSelectMemo"
         >
           {{ item.title }}
         </el-menu-item>

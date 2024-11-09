@@ -85,9 +85,11 @@ const submitForm = async () => {
           v-model:pure-text="formData.pureText"
           placeholder="メモの内容を入力"
         />
+        <!--
         {{ formData.content }}
         <br />
         {{ formData.search }}
+-->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">

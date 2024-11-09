@@ -141,6 +141,10 @@ watch(content, (newValue) => {
   font-size: 16px;
 }
 
+.tiptap ul {
+  padding: 0 2rem;
+}
+
 .bubble-menu {
   display: flex;
   gap: 8px;
