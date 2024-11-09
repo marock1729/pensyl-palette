@@ -7,6 +7,7 @@ import {
   faStrikethrough,
   faUnderline,
   faLink,
+  faLinkSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
@@ -143,6 +144,16 @@ watch(content, (newValue) => {
       >
         <font-awesome-icon :icon="faLink" />
       </button>
+      <button
+        v-if="editor.isActive('link')"
+        @click="
+          editor.chain().focus().extendMarkRange('link').unsetLink().run()
+        "
+        type="button"
+      >
+        <font-awesome-icon :icon="faLinkSlash" />
+      </button>
+
       <button
         @click="editor.chain().focus().setColor('#F98181').run()"
         :class="{
