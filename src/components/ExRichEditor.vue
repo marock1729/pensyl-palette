@@ -145,6 +145,11 @@ watch(content, (newValue) => {
   padding: 0 2rem;
 }
 
+.tiptap ::selection {
+  display: inline;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .bubble-menu {
   display: flex;
   gap: 8px;
