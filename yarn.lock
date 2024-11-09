@@ -838,18 +838,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiptap/extension-link@npm:^2.9.1":
-  version: 2.9.1
-  resolution: "@tiptap/extension-link@npm:2.9.1"
-  dependencies:
-    linkifyjs: "npm:^4.1.0"
-  peerDependencies:
-    "@tiptap/core": ^2.7.0
-    "@tiptap/pm": ^2.7.0
-  checksum: 10c0/6eda0d9914cb7e18998606b0a00943922ff59ef2d95568bb359f96cc212c703b8b59ad36b1911587bfdf1819a637807a20741f4774ebc1620ec4d6b9fb1adbcd
-  languageName: node
-  linkType: hard
-
 "@tiptap/extension-list-item@npm:^2.9.1":
   version: 2.9.1
   resolution: "@tiptap/extension-list-item@npm:2.9.1"
@@ -1988,7 +1976,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"linkifyjs@npm:^4.1.0":
+"linkifyjs@npm:^4.1.3":
   version: 4.1.3
   resolution: "linkifyjs@npm:4.1.3"
   checksum: 10c0/9fb71da06ee710b5587c8b61ff9a0e45303d448f61fab135e44652cff95c09c1abe276158a72384cff6f35a2371d1cec33dfaa7e5280b71dbb142b43d210c75a
@@ -2371,7 +2359,6 @@ __metadata:
     "@tauri-apps/plugin-sql": "npm:^2.0.0"
     "@tiptap/extension-bubble-menu": "npm:^2.9.1"
     "@tiptap/extension-color": "npm:^2.9.1"
-    "@tiptap/extension-link": "npm:^2.9.1"
     "@tiptap/extension-placeholder": "npm:^2.9.1"
     "@tiptap/extension-underline": "npm:^2.9.1"
     "@tiptap/pm": "npm:^2.9.1"
@@ -2380,6 +2367,7 @@ __metadata:
     "@types/node": "npm:^22.8.6"
     "@vitejs/plugin-vue": "npm:^5.0.5"
     element-plus: "npm:^2.8.6"
+    linkifyjs: "npm:^4.1.3"
     pinia: "npm:^2.2.5"
     typescript: "npm:^5.2.2"
     unplugin-auto-import: "npm:^0.18.3"
