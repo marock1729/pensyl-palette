@@ -7,11 +7,10 @@ import { useMemoStore } from "@/stores/memo";
 const store = useMemoStore();
 const { selectedMemo } = storeToRefs(store);
 
-const formData = ref<Memo>({
+const formData = ref({
   id: null as number | null,
   title: "",
   content: "",
-  search: "",
   pureText: "",
 });
 
@@ -22,7 +21,6 @@ const resetForm = async () => {
     id: null,
     title: "",
     content: "",
-    search: "",
     pureText: "",
   };
   isEditing.value = false;
@@ -44,7 +42,12 @@ watch(selectedMemo, async (memo) => {
 });
 
 const setEditMemo = async (memo: Memo) => {
-  formData.value = { ...memo };
+  formData.value = {
+    id: memo.id,
+    title: memo.title,
+    content: memo.content,
+    pureText: "",
+  };
   isEditing.value = true;
 };
 
@@ -55,7 +58,10 @@ const submitForm = async () => {
 
   if (isEditing.value && formData.value.id) {
     await store.updateMemo({
-      ...(formData.value as Memo),
+      id: formData.value.id,
+      title: formData.value.title,
+      content: formData.value.content,
+      search: formData.value.title + " " + formData.value.pureText,
     });
   } else {
     const newMemo = await store.addMemo({
@@ -73,6 +79,7 @@ const submitForm = async () => {
 </script>
 
 <template>
+  <a href="https://tiptap.dev/docs/editor/extensions/marks/link">a</a>
   <div class="memo-form">
     <h2>{{ isEditing ? "メモを編集" : "新規メモ作成" }}</h2>
     <el-form @submit.prevent="submitForm" label-position="top">
@@ -85,11 +92,9 @@ const submitForm = async () => {
           v-model:pure-text="formData.pureText"
           placeholder="メモの内容を入力"
         />
-        <!--
         {{ formData.content }}
         <br />
-        {{ formData.search }}
--->
+        {{ formData.pureText }}
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">

@@ -6,14 +6,18 @@ import {
   faItalic,
   faStrikethrough,
   faUnderline,
+  faLink,
 } from "@fortawesome/free-solid-svg-icons";
 import { BubbleMenu, EditorContent, useEditor } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Underline from "@tiptap/extension-underline";
-//import Text from '@tiptap/extension-text'
+//import Text from "@tiptap/extension-text";
 import TextStyle from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
+//import Link from "@tiptap/extension-link";
+import { linkExtension } from "./plugins/TiptapLinkExtension";
+import { TiptapLinkPlugin } from "./plugins/TiptapLinkPlugin";
 
 const pureText = defineModel("pure-text", {
   type: String,
@@ -31,10 +35,19 @@ const editor = useEditor({
   extensions: [
     StarterKit,
     Placeholder.configure({ placeholder: props.placeholder }),
-    //        Text,
+    // Text,
     TextStyle,
     Underline,
     Color,
+    // Link.configure({
+    //   openOnClick: false,
+    //   HTMLAttributes: {
+    //     // tauriでopenOnClick:falseが効かない。target="_self"で代用
+    //     target: "_self",
+    //   },
+    // }),
+    linkExtension,
+    TiptapLinkPlugin,
   ],
   content: content.value,
   onUpdate: ({ editor }) => {
@@ -45,6 +58,29 @@ const editor = useEditor({
   editable: true,
 });
 
+const setLink = () => {
+  console.log("setLink");
+  const previousUrl = editor.value!.getAttributes("link").href;
+  const url = window.prompt("URL", previousUrl);
+
+  // cancelled
+  if (url === null) {
+    return;
+  }
+
+  // empty
+  if (url === "") {
+    editor.value!.chain().focus().extendMarkRange("link").unsetLink().run();
+    return;
+  }
+
+  editor
+    .value!.chain()
+    .focus()
+    .extendMarkRange("link")
+    .setLink({ href: url })
+    .run();
+};
 onMounted(() => {
   console.log("mounted");
   // エディタの内容が変更されたときにv-modelを更新
@@ -99,6 +135,13 @@ watch(content, (newValue) => {
         type="button"
       >
         <font-awesome-icon :icon="faStrikethrough" />
+      </button>
+      <button
+        @click="setLink"
+        :class="{ 'is-active': editor.isActive('link') }"
+        type="button"
+      >
+        <font-awesome-icon :icon="faLink" />
       </button>
       <button
         @click="editor.chain().focus().setColor('#F98181').run()"
@@ -175,6 +218,11 @@ watch(content, (newValue) => {
   background: #f0f0f0;
 }
 
+.link-widget-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 /* Placeholder (at the top) */
 p.is-editor-empty:first-child::before {
   color: gray;
