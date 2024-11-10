@@ -3,6 +3,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vue from "@vitejs/plugin-vue";
+import path from "path";
 
 // @ts-expect-error process is a nodejs global
 const host = process.env.TAURI_DEV_HOST;
@@ -18,6 +19,13 @@ export default defineConfig(async () => ({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+
+  /* alias設定 */
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //

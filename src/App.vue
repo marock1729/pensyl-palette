@@ -1,37 +1,39 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { onMounted } from "vue";
+import { useMemoStore } from "@/stores/memo";
 
-const memos = ref([
-  { title: 'メモ1', content: 'メモ1の内容' },
-  { title: 'メモ2', content: 'メモ2の内容' },
-  { title: 'メモ3', content: 'メモ3の内容' },
-  { title: 'メモ4', content: 'メモ4の内容' },
-]);
-const selectedMemoIndex = ref(0);
+const memoStore = useMemoStore();
 
-const selectedMemo = computed(() => {
-  return memos.value[selectedMemoIndex.value];
+onMounted(async () => {
+  await memoStore.fetchMemos();
 });
-
-const selectMemo = (index: number) => {
-  selectedMemoIndex.value = index;
-};
-
 </script>
-
 <template>
-  <el-container style="height: 100vh;">
-    <el-aside width="300px">
-      <el-menu>
-        <el-menu-item v-for="(memo, index) in memos" :key="index" @click="selectMemo(index)">
-          {{ memo.title }}
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
-    <el-main>
-      <el-input v-model="selectedMemo.title" placeholder="タイトル" />
-      <ex-rich-editor v-model="selectedMemo.content" />
-
-    </el-main>
-  </el-container>
+  <div class="top-layout">
+    <el-container>
+      <el-aside width="200px">
+        <el-scrollbar>
+          <memo-list />
+        </el-scrollbar>
+      </el-aside>
+      <el-main>
+        <memo-form />
+      </el-main>
+    </el-container>
+  </div>
 </template>
+<style lang="css">
+.top-layout {
+  width: 100%;
+  height: 100%;
+}
+
+.el-container {
+  width: 100%;
+  height: 100%;
+}
+
+.el-scrollbar__view {
+  height: 100%;
+}
+</style>

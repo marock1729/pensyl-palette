@@ -9,12 +9,20 @@ declare module 'vue' {
   export interface GlobalComponents {
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     ExRichEditor: typeof import('./src/components/ExRichEditor.vue')['default']
+    MemoForm: typeof import('./src/components/MemoForm.vue')['default']
+    MemoList: typeof import('./src/components/MemoList.vue')['default']
   }
 }
