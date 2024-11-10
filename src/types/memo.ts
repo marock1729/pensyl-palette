@@ -3,5 +3,4 @@ export interface Memo {
     title: string;
     content: string;
     search: string;
-    pureText: string;
 };

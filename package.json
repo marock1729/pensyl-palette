@@ -26,6 +26,7 @@
     "@tiptap/starter-kit": "^2.9.1",
     "@tiptap/vue-3": "^2.9.1",
     "element-plus": "^2.8.6",
+    "linkifyjs": "^4.1.3",
     "pinia": "^2.2.5",
     "vue": "^3.3.4"
   },
