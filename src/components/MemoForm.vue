@@ -79,7 +79,6 @@ const submitForm = async () => {
 </script>
 
 <template>
-  <a href="https://tiptap.dev/docs/editor/extensions/marks/link">a</a>
   <div class="memo-form">
     <h2>{{ isEditing ? "メモを編集" : "新規メモ作成" }}</h2>
     <el-form @submit.prevent="submitForm" label-position="top">
@@ -92,9 +91,11 @@ const submitForm = async () => {
           v-model:pure-text="formData.pureText"
           placeholder="メモの内容を入力"
         />
+        <!--
         {{ formData.content }}
         <br />
         {{ formData.pureText }}
+        -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">
